@@ -1,7 +1,6 @@
 package news;
 
 import base.CommonAPI;
-import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import reader.ReadNewsData;
 
@@ -14,7 +13,7 @@ public class Search extends CommonAPI{
     ReadNewsData readNewsData = new ReadNewsData();
     @Test
     public void searchNews() throws InterruptedException,IOException{
-            String [] data = readNewsData.getData();
+            String [] data = readNewsData.getDataFromExcelFile();
             clickByCss("#search-button");
             Thread.sleep(1000);
             int counter = 0;

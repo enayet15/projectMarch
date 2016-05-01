@@ -69,7 +69,6 @@ public class CommonAPI {
         cap.setCapability("version",browserVersion);
         driver = new RemoteWebDriver(new URL("http://"+userName+":"+accessKey+
         "@ondemand.saucelabs.com:80/wd/hub"), cap);
-
             return driver;
         }
     }
