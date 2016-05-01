@@ -49,7 +49,7 @@ public class CommonAPI {
 
     public WebDriver getLocalDriver(String browserName){
         if(browserName.equalsIgnoreCase("chrome")){
-            System.setProperty("webdriver.chrome.driver","Generic/browser-driver/chromedriver.exe");
+            System.setProperty("webdriver.chrome.driver",System.getProperty("user.dir")+"\\browser-driver\\chromedriver.exe");
             driver = new ChromeDriver();
         }else if(browserName.equalsIgnoreCase("firefox")){
             driver = new FirefoxDriver();
@@ -60,7 +60,6 @@ public class CommonAPI {
         return driver;
 
     }
-
     public WebDriver getCloudDriver(String userName,String accessKey,String os, String browserName,
                                     String browserVersion)throws IOException {{
 

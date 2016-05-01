@@ -41,6 +41,33 @@
     </dependencyManagement>
 
     <!--ProfilingTODO-->
+<profiles>
+    <profile>
+      <id>default</id>
+        <activation>
+            <activeByDefault>true</activeByDefault>
+        </activation>
+        <modules>
+            <module>Generic</module>
+            <module>Cnn</module>
+            <module>Amazon</module>
+        </modules>
+    </profile>
+    <profile>
+     <id>cnn-app</id>
+        <modules>
+            <module>Generic</module>
+            <module>Cnn</module>
+        </modules>
+    </profile>
+    <profile>
+     <id>amazon-app</id>
+        <modules>
+            <module>Generic</module>
+            <module>Amazon</module>
+        </modules>
+    </profile>
+</profiles>
 
 
 </project>
