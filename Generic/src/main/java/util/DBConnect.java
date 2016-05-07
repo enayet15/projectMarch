@@ -1,5 +1,7 @@
 package util;
 
+import base.CommonAPI;
+
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.sql.*;
@@ -15,7 +17,7 @@ public class DBConnect {
     private Statement statement = null;
     private PreparedStatement preparedStatement = null;
     private ResultSet resultSet = null;
-    List<String> list = new ArrayList<String>();
+   // List<String> list = new ArrayList<String>();
 
     public static Properties loadPropertiesFile()throws Exception{
         Properties prop = new Properties();
@@ -37,12 +39,13 @@ public class DBConnect {
         Class.forName(driverClass);
         // Setup the connection with the DB
         connect = DriverManager.getConnection(url, userName, passWord);
-        System.out.println("Database connected");
+        CommonAPI.logger.info("database connected");
+       // System.out.println("Database connected");
 
     }
 
-    public List<String> readDataBase() throws Exception {
-
+    public List<String> readDataBase(String tableName, String columnName) throws Exception {
+          List<String> data = new ArrayList<String>();
         try {
 
             connectToDataBase();
@@ -50,30 +53,30 @@ public class DBConnect {
             statement = connect.createStatement();
             // Result set get the result of the SQL query
             resultSet = statement
-                    .executeQuery("select * from CnnNewsVertical");
-            getResultSetData(resultSet);
+                    .executeQuery("select * from "+ tableName);
+            data = getResultSetData(resultSet, columnName);
         } catch (Exception e) {
             throw e;
         } finally {
             close();
         }
 
-        return list;
+        return data;
     }
     public void queryDatabase(){
 
     }
 
-    private List<String> getResultSetData(ResultSet resultSet) throws SQLException {
-
+    private List<String> getResultSetData(ResultSet resultSet,String columnName) throws SQLException {
+        List<String> dataList = new ArrayList<String>();
         while (resultSet.next()) {
-            String itemName = resultSet.getString("NewsTitle");
+            String itemName = resultSet.getString(columnName);
 
-            list.add(itemName);
+            dataList.add(itemName);
 
         }
 
-        return list;
+        return dataList;
     }
     private void writeResultSetToConsole(ResultSet resultSet) throws SQLException {
         while (resultSet.next()) {

@@ -3,7 +3,6 @@ package news;
 import base.CommonAPI;
 import org.testng.annotations.Test;
 import reader.ReadNewsData;
-import util.DBConnect;
 
 import java.io.IOException;
 import java.util.List;
@@ -15,7 +14,8 @@ public class SearchNewsFromDB extends CommonAPI {
     ReadNewsData readNewsData = new ReadNewsData();
     @Test
     public void searchNews() throws InterruptedException,IOException,Exception {
-        List<String> data = readNewsData.getDataFromDB();
+        logger.info("Running News Search on Cnn");
+        List<String> data = readNewsData.getNewsDataFromDB("cnnnewsvertical","NewsTitle");
         clickByCss("#search-button");
         Thread.sleep(1000);
         int counter = 0;

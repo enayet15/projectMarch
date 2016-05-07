@@ -9,11 +9,11 @@ import java.io.IOException;
 /**
  * Created by rrt on 4/23/2016.
  */
-public class Search extends CommonAPI{
+public class SearchNewsFromExcelFile extends CommonAPI{
     ReadNewsData readNewsData = new ReadNewsData();
     @Test
     public void searchNews() throws InterruptedException,IOException{
-            String [] data = readNewsData.getDataFromExcelFile();
+            String [] data = readNewsData.getNewsFromExcelFile();
             clickByCss("#search-button");
             Thread.sleep(1000);
             int counter = 0;
