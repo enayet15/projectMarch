@@ -15,6 +15,7 @@ public class Products extends CommonAPI {
 
     @Test
     public void searchItems()throws IOException, InterruptedException{
+        logger.info("Searching products");
         Search search = PageFactory.initElements(driver, Search.class);
         ProductsToBeSearched productsToBeSearched = new ProductsToBeSearched();
         String [] products = productsToBeSearched.getProducts();
